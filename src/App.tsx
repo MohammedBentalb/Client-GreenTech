@@ -6,6 +6,7 @@ import { Login } from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Protected from "./security/Protected";
 import UnAuthRoute from "./security/UnAuthRoute";
+import Products from "./pages/Products";
 
 function App() {
   return (
@@ -19,9 +20,12 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<Protected allowed={"ROLE_USER"} />}>
-            <Route element={<GlobalLayout />}>
-              <Route path="/" element={<LandingPage />} />
+          <Route element={<GlobalLayout />}>
+            <Route path="/" element={<LandingPage />} />
+
+            <Route element={<Protected allowed={"ROLE_USER"} />}>
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<Products />} />
             </Route>
           </Route>
         </Routes>
